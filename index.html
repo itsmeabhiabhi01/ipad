@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>HAPPY TALK</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@400;700&family=Work+Sans:wght@200;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body onload="checkTime();">
+    <!-- iPad Interface -->
+    <div class="ipad-wrap" id="ipad-wrap">
+        <div class="ipadBox">
+            <button class="powerButton" onclick="powerMe();">I</button>
+            <div class="ipadScreen" onclick="closeSearchOnClick(event)">
+                <div class="wallpaper">
+                    <div class="statusBar"></div>
+                    <div class="search-bar" id="search-bar">
+                        <input type="text" id="search-input" placeholder="Search apps...">
+                        <button onclick="performSearch()">Search</button>
+                    </div>
+                    <div class="appGrid" id="appGrid">
+                        <!-- YouTube -->
+                        <div class="logo" id="ipad-youtube-app">
+                            <img src="https://img.icons8.com/?size=100&id=19318&format=png&color=000000" alt="YouTube">
+                            <p>YouTube</p>
+                        </div>
+                        <!-- Games Folder -->
+                        <div class="logo" id="ipad-games-app">
+                            <svg viewBox="0 0 100 100">
+                                <rect x="20" y="30" width="60" height="40" rx="5" fill="#333333" />
+                                <rect x="15" y="40" width="5" height="20" rx="2" fill="#222222" />
+                                <rect x="80" y="40" width="5" height="20" rx="2" fill="#222222" />
+                                <circle cx="35" cy="50" r="10" fill="#444444" stroke="#555555" stroke-width="1" />
+                                <circle cx="35" cy="50" r="5" fill="#ff3e3e" />
+                                <circle cx="65" cy="40" r="5" fill="#00aaff" />
+                                <circle cx="75" cy="50" r="5" fill="#55dd55" />
+                                <circle cx="65" cy="60" r="5" fill="#ffdd00" />
+                                <circle cx="55" cy="50" r="5" fill="#ff55ff" />
+                                <rect x="27.5" y="75" width="15" height="5" rx="1" fill="#555555" />
+                                <rect x="32.5" y="70" width="5" height="15" rx="1" fill="#555555" />
+                                <rect x="55" y="75" width="8" height="3" rx="1.5" fill="#666666" />
+                                <rect x="67" y="75" width="8" height="3" rx="1.5" fill="#666666" />
+                            </svg>
+                            <p>Games</p>
+                        </div>
+                        <!-- Social -->
+                        <div class="logo" id="ipad-social-app">
+                            <svg viewBox="0 0 64 64">
+                                <circle cx="32" cy="32" r="28" fill="#ffb347"/>
+                                <circle cx="24" cy="32" r="8" fill="#fff"/>
+                                <circle cx="40" cy="32" r="8" fill="#fff"/>
+                                <ellipse cx="32" cy="44" rx="14" ry="6" fill="#fff" opacity="0.7"/>
+                                <circle cx="24" cy="32" r="3" fill="#ffb347"/>
+                                <circle cx="40" cy="32" r="3" fill="#ffb347"/>
+                            </svg>
+                            <p>Social</p>
+                        </div>
+                        <!-- Watch Party Folder -->
+                        <div class="logo" id="ipad-watchparty-app">
+                            <svg viewBox="0 0 64 64">
+                                <circle cx="32" cy="32" r="28" fill="#ffb347"/>
+                                <polygon points="28,22 46,32 28,42" fill="#fff"/>
+                                <circle cx="20" cy="46" r="4" fill="#fff"/>
+                                <circle cx="44" cy="46" r="4" fill="#fff"/>
+                                <ellipse cx="32" cy="52" rx="12" ry="3" fill="#fff" opacity="0.6"/>
+                            </svg>
+                            <p>Watch Party</p>
+                        </div>
+                        <!-- Device Switcher -->
+                        <div class="logo" id="ipad-device-switcher-app">
+                            <svg viewBox="0 0 64 64">
+                                <rect x="10" y="14" width="44" height="36" rx="4" fill="#fff" stroke="#333" stroke-width="2"/>
+                                <rect x="14" y="18" width="36" height="28" rx="2" fill="#e3f2fd"/>
+                                <rect x="40" y="38" width="8" height="2" fill="#1976d2"/>
+                                <rect x="18" y="26" width="18" height="2" fill="#1976d2"/>
+                                <rect x="18" y="30" width="10" height="2" fill="#1976d2"/>
+                            </svg>
+                            <p>Device Switcher</p>
+                        </div>
+                        <!-- Duolingo -->
+                        <div class="logo" onclick="window.open('https://www.duolingo.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=jJS472JMXlsE&format=png&color=000000" alt="Duolingo">
+                            <p>Duolingo</p>
+                        </div>
+                        <!-- Happy Talk -->
+                        <div class="logo" onclick="window.open('https://happytalk-logo.example.com', '_blank')">
+                            <svg viewBox="0 0 200 200" style="background-color: #58CC02; border-radius: 20px;">
+                                <rect x="40" y="55" width="120" height="90" rx="15" fill="white"/>
+                                <text x="100" y="110" font-size="50" text-anchor="middle" dominant-baseline="middle">😊</text>
+                                <path d="M145 145 L160 160 L145 145" fill="white"/>
+                            </svg>
+                            <p>Happy Talk</p>
+                        </div>
+                        <!-- Other Apps -->
+                        <div class="logo" onclick="window.open('https://www.instagram.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=BrU2BBoRXiWq&format=png&color=000000" alt="Instagram">
+                            <p>Instagram</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://x.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=000000" alt="X">
+                            <p>X</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.facebook.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000" alt="Facebook">
+                            <p>Facebook</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.tiktok.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=118638&format=png&color=000000" alt="TikTok">
+                            <p>TikTok</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.pinterest.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=63676&format=png&color=000000" alt="Pinterest">
+                            <p>Pinterest</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.linkedin.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=000000" alt="LinkedIn">
+                            <p>LinkedIn</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.quora.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=wPcChHypTdti&format=png&color=000000" alt="Quora">
+                            <p>Quora</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.reddit.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=FLisMqR76b1i&format=png&color=000000" alt="Reddit">
+                            <p>Reddit</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.google.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google">
+                            <p>Google</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.google.com/chrome', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=63785&format=png&color=000000" alt="Chrome">
+                            <p>Chrome</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://maps.google.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=DcygmpZqBEd9&format=png&color=000000" alt="Google Maps">
+                            <p>Google Maps</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://docs.google.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=30464&format=png&color=000000" alt="Google Docs">
+                            <p>Google Docs</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://mail.google.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=qyRpAggnV0zH&format=png&color=000000" alt="Gmail">
+                            <p>Gmail</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://pay.google.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=d3FdjviJ7gNe&format=png&color=000000" alt="Google Pay">
+                            <p>Google Pay</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.amazon.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=21295&format=png&color=000000" alt="Amazon">
+                            <p>Amazon</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.amazon.com/amazonprime', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=TUt56jArwSOO&format=png&color=000000" alt="Amazon Prime">
+                            <p>Amazon Prime</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://music.amazon.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=3TE5FcLikFfj&format=png&color=000000" alt="Amazon Music">
+                            <p>Amazon Music</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.openai.com/chatgpt', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=FBO05Dys9QCg&format=png&color=000000" alt="ChatGPT">
+                            <p>ChatGPT</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://x.ai', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=eoxMN35Z6JKg&format=png&color=000000" alt="AI">
+                            <p>AI</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.spotify.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=G9XXzb9XaEKX&format=png&color=000000" alt="Spotify">
+                            <p>Spotify</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.netflix.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=ortlsYTZxMvT&format=png&color=000000" alt="Netflix">
+                            <p>Netflix</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.flipkart.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=UU2im0hihoyi&format=png&color=000000" alt="Flipkart">
+                            <p>Flipkart</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.swiggy.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=M8M9YjBrtUkd&format=png&color=000000" alt="Swiggy">
+                            <p>Swiggy</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.zomato.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=8VXmexoroqDq&format=png&color=000000" alt="Zomato">
+                            <p>Zomato</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.paytm.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=Aub11Fs5DJVg&format=png&color=000000" alt="Paytm">
+                            <p>Paytm</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.phonepe.com', '_blank')">
+                            <img src="https://img.icons8
+
+.com/?size=100&id=OYtBxIlJw0zH&format=png&color=000000" alt="PhonePe">
+                            <p>PhonePe</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.notion.so', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=uVERmCBZZACL&format=png&color=000000" alt="Notion">
+                            <p>Notion</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.canva.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=iWw83PVcBpLw&format=png&color=000000" alt="Canva">
+                            <p>Canva</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.wikipedia.org', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=12470&format=png&color=000000" alt="Wikipedia">
+                            <p>Wikipedia</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.whatsapp.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp">
+                            <p>WhatsApp</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.apple.com/mail', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=cHNRcWMI2bLJ&format=png&color=000000" alt="Mail">
+                            <p>Mail</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://snapchat.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=67599&format=png&color=000000" alt="Snapchat">
+                            <p>Snapchat</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://telegram.org', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=oWiuH0jFiU0R&format=png&color=000000" alt="Telegram">
+                            <p>Telegram</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://zoom.us', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=82ewLsKHYlLc&format=png&color=000000" alt="Zoom">
+                            <p>Zoom</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://meet.google.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=pE97I4t7Il9M&format=png&color=000000" alt="Google Meet">
+                            <p>Google Meet</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://music.youtube.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=V1cbDTh9pvRc&format=png&color=000000" alt="YouTube Music">
+                            <p>YouTube Music</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://translate.google.com', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=13647&format=png&color=000000" alt="Google Translate">
+                            <p>Google Translate</p>
+                        </div>
+                        <div class="logo" onclick="window.open('https://www.perplexity.ai', '_blank')">
+                            <img src="https://img.icons8.com/?size=100&id=kzJWN5jCDzpq&format=png&color=000000" alt="Perplexity AI">
+                            <p>Perplexity AI</p>
+                        </div>
+                    </div>
+                    <!-- YouTube Container -->
+                    <div class="youtube-container" id="ipad-youtube-container">
+                        <div class="youtube-header">
+                            <i class="fab fa-youtube text-red-600 text-2xl"></i>
+                            <div class="youtube-search">
+                                <input id="ipad-youtube-search-input" placeholder="Search YouTube" type="text"/>
+                            </div>
+                            <button id="ipad-youtube-search-button" class="text-white"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="youtube-content">
+                            <div id="ipad-youtube-video-player" class="mb-4">
+                                <iframe id="ipad-youtube-iframe" src="" allowfullscreen class="hidden w-full h-96"></iframe>
+                            </div>
+                            <div id="ipad-youtube-video-list" class="grid grid-cols-2 gap-4"></div>
+                        </div>
+                    </div>
+                    <!-- Games Container -->
+                    <div class="games-container" id="ipad-games-container">
+                        <div class="games-header">
+                            <i class="fas fa-gamepad text-green-600 text-2xl"></i>
+                            <div class="games-search">
+                                <input id="ipad-games-search-input" placeholder="Search Games" type="text"/>
+                            </div>
+                            <button id="ipad-games-search-button" class="text-white"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="games-content">
+                            <div id="ipad-games-list" class="sub-grid">
+                                <!-- Miniclip -->
+                                <div class="logo" onclick="window.open('https://www.miniclip.com', '_blank')">
+                                    <img src="https://img.icons8.com/?size=100&id=GdTfmvoroqDq&format=png&color=000000" alt="Miniclip">
+                                    <p>Miniclip</p>
+                                </div>
+                                <!-- CrazyGames -->
+                                <div class="logo" onclick="window.open('https://www.crazygames.com/multiplayer', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <circle cx="32" cy="32" r="28" fill="#ff6f61"/>
+                                        <polygon points="32,16 48,48 16,48" fill="#fff"/>
+                                        <circle cx="32" cy="36" r="5" fill="#ff6f61"/>
+                                    </svg>
+                                    <p>CrazyGames</p>
+                                </div>
+                                <!-- Poki -->
+                                <div class="logo" onclick="window.open('http://poki.com/en/multiplayer', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="10" y="20" width="44" height="24" rx="12" fill="#4f8cff"/>
+                                        <circle cx="32" cy="32" r="8" fill="#fff"/>
+                                    </svg>
+                                    <p>Poki</p>
+                                </div>
+                                <!-- OnlineGames.io -->
+                                <div class="logo" onclick="window.open('https://www.onlinegames.io/t/multiplayer/', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="14" y="14" width="36" height="36" rx="8" fill="#ffd600"/>
+                                        <circle cx="32" cy="32" r="12" fill="#fff"/>
+                                        <rect x="28" y="28" width="8" height="8" fill="#ffd600"/>
+                                    </svg>
+                                    <p>OnlineGames.io</p>
+                                </div>
+                                <!-- Miniplay -->
+                                <div class="logo" onclick="window.open('https://www.miniplay.com/multiplayer', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <circle cx="32" cy="32" r="28" fill="#00bfae"/>
+                                        <rect x="24" y="24" width="16" height="16" rx="4" fill="#fff"/>
+                                        <circle cx="32" cy="32" r="4" fill="#00bfae"/>
+                                    </svg>
+                                    <p>Miniplay</p>
+                                </div>
+                                <!-- JKLM.fun -->
+                                <div class="logo" onclick="window.open('https://jklm.fun', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="12" y="12" width="40" height="40" rx="10" fill="#ab47bc"/>
+                                        <text x="32" y="40" font-size="18" fill="#fff" font-family="Arial" text-anchor="middle">J</text>
+                                    </svg>
+                                    <p>JKLM.fun</p>
+                                </div>
+                                <!-- Skribbl.io -->
+                                <div class="logo" onclick="window.open('https://skribbl.io', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="40" rx="18" ry="8" fill="#fff176"/>
+                                        <rect x="22" y="16" width="20" height="18" rx="6" fill="#1976d2"/>
+                                        <circle cx="32" cy="25" r="4" fill="#fff"/>
+                                    </svg>
+                                    <p>Skribbl.io</p>
+                                </div>
+                                <!-- NetGames -->
+                                <div class="logo" onclick="window.open('https://netgames.io', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="16" y="16" width="32" height="32" rx="8" fill="#009688"/>
+                                        <circle cx="32" cy="32" r="10" fill="#fff"/>
+                                    </svg>
+                                    <p>NetGames</p>
+                                </div>
+                                <!-- Codenames -->
+                                <div class="logo" onclick="window.open('https://codenames.game', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="10" y="20" width="44" height="24" rx="8" fill="#ff7043"/>
+                                        <rect x="18" y="28" width="28" height="8" rx="3" fill="#fff"/>
+                                    </svg>
+                                    <p>Codenames</p>
+                                </div>
+                                <!-- PlayOK -->
+                                <div class="logo" onclick="window.open('https://www.playok.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <circle cx="32" cy="32" r="28" fill="#64b5f6"/>
+                                        <polygon points="28,24 44,32 28,40" fill="#fff"/>
+                                    </svg>
+                                    <p>PlayOK</p>
+                                </div>
+                                <!-- Board Game Arena -->
+                                <div class="logo" onclick="window.open('https://boardgamearena.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="12" y="12" width="40" height="40" rx="12" fill="#8d6e63"/>
+                                        <circle cx="32" cy="32" r="8" fill="#fff"/>
+                                        <rect x="28" y="28" width="8" height="8" fill="#8d6e63"/>
+                                    </svg>
+                                    <p>Board Game Arena</p>
+                                </div>
+                                <!-- Lichess -->
+                                <div class="logo" onclick="window.open('https://lichess.org', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="16" y="16" width="32" height="32" rx="6" fill="#fff"/>
+                                        <rect x="24" y="24" width="16" height="16" fill="#212121"/>
+                                    </svg>
+                                    <p>Lichess</p>
+                                </div>
+                                <!-- Spyfall -->
+                                <div class="logo" onclick="window.open('https://spyfall.adrianocola.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="40" rx="18" ry="8" fill="#fff"/>
+                                        <circle cx="32" cy="28" r="10" fill="#607d8b"/>
+                                        <circle cx="32" cy="28" r="4" fill="#fff"/>
+                                    </svg>
+                                    <p>Spyfall</p>
+                                </div>
+                                <!-- Gartic Phone -->
+                                <div class="logo" onclick="window.open('https://garticphone.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="40" rx="18" ry="8" fill="#fff"/>
+                                        <rect x="18" y="20" width="28" height="16" rx="6" fill="#7e57c2"/>
+                                        <circle cx="32" cy="28" r="4" fill="#fff"/>
+                                    </svg>
+                                    <p>Gartic Phone</p>
+                                </div>
+                                <!-- Agar.io -->
+                                <div class="logo" onclick="window.open('https://agar.io', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <circle cx="32" cy="32" r="28" fill="#fff"/>
+                                        <circle cx="32" cy="32" r="14" fill="#ff5252"/>
+                                        <circle cx="48" cy="20" r="4" fill="#81d4fa"/>
+                                        <circle cx="18" cy="44" r="3" fill="#ffd600"/>
+                                    </svg>
+                                    <p>Agar.io</p>
+                                </div>
+                                <!-- Slither.io -->
+                                <div class="logo" onclick="window.open('https://slither.io', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <path d="M20,44 Q32,24 44,44" stroke="#43a047" stroke-width="8" fill="none"/>
+                                        <circle cx="20" cy="44" r="5" fill="#43a047"/>
+                                        <circle cx="44" cy="44" r="5" fill="#43a047"/>
+                                    </svg>
+                                    <p>Slither.io</p>
+                                </div>
+                                <!-- Krunker.io -->
+                                <div class="logo" onclick="window.open('https://krunker.io', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="20" y="20" width="24" height="24" rx="6" fill="#616161"/>
+                                        <rect x="28" y="28" width="8" height="8" fill="#fff"/>
+                                    </svg>
+                                    <p>Krunker.io</p>
+                                </div>
+                                <!-- Town of Salem -->
+                                <div class="logo" onclick="window.open('https://www.blankmediagames.com/TownOfSalem', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="40" rx="18" ry="8" fill="#ffe082"/>
+                                        <rect x="24" y="16" width="16" height="18" rx="6" fill="#795548"/>
+                                    </svg>
+                                    <p>Town of Salem</p>
+                                </div>
+                                <!-- Cards Against Humanity -->
+                                <div class="logo" onclick="window.open('https://pyx-1.pretendyoure.xyz/zy/game.jsp', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="18" y="18" width="28" height="36" rx="6" fill="#212121"/>
+                                        <rect x="24" y="24" width="16" height="8" fill="#fff"/>
+                                    </svg>
+                                    <p>Cards Against Humanity</p>
+                                </div>
+                                <!-- Uno Online -->
+                                <div class="logo" onclick="window.open('https://play.unofreak.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="32" rx="24" ry="16" fill="#d32f2f"/>
+                                        <text x="32" y="38" font-size="18" fill="#fff" font-family="Arial" text-anchor="middle">UNO</text>
+                                    </svg>
+                                    <p>Uno Online</p>
+                                </div>
+                                <!-- Scattergories -->
+                                <div class="logo" onclick="window.open('https://swellgarfo.com/scattergories', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="14" y="14" width="36" height="36" rx="10" fill="#fff"/>
+                                        <circle cx="32" cy="32" r="8" fill="#ff7043"/>
+                                    </svg>
+                                    <p>Scattergories</p>
+                                </div>
+                                <!-- Chess.com -->
+                                <div class="logo" onclick="window.open('https://chess.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="20" y="20" width="24" height="24" rx="6" fill="#388e3c"/>
+                                        <rect x="28" y="28" width="8" height="16" fill="#fff"/>
+                                    </svg>
+                                    <p>Chess.com</p>
+                                </div>
+                                <!-- Backgammon Galaxy -->
+                                <div class="logo" onclick="window.open('https://backgammongalaxy.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="32" rx="24" ry="16" fill="#fff"/>
+                                        <rect x="24" y="24" width="16" height="16" fill="#1976d2"/>
+                                    </svg>
+                                    <p>Backgammon Galaxy</p>
+                                </div>
+                                <!-- Dominion Online -->
+                                <div class="logo" onclick="window.open('https://dominion.games', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="16" y="16" width="32" height="32" rx="8" fill="#fff"/>
+                                        <rect x="24" y="24" width="16" height="16" fill="#ff7043"/>
+                                    </svg>
+                                    <p>Dominion Online</p>
+                                </div>
+                                <!-- Tabletopia -->
+                                <div class="logo" onclick="window.open('https://tabletopia.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <polygon points="32,12 52,52 12,52" fill="#7e57c2"/>
+                                        <circle cx="32" cy="32" r="8" fill="#fff"/>
+                                    </svg>
+                                    <p>Tabletopia</p>
+                                </div>
+                                <!-- Yucata.de -->
+                                <div class="logo" onclick="window.open('https://www.yucata.de', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="32" rx="24" ry="16" fill="#fff176"/>
+                                        <rect x="24" y="24" width="16" height="16" fill="#43a047"/>
+                                    </svg>
+                                    <p>Yucata.de</p>
+                                </div>
+                                <!-- Othello -->
+                                <div class="logo" onclick="window.open('https://www.eothello.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <circle cx="32" cy="32" r="28" fill="#212121"/>
+                                        <circle cx="32" cy="32" r="14" fill="#fff"/>
+                                    </svg>
+                                    <p>Othello</p>
+                                </div>
+                                <!-- Wordle -->
+                                <div class="logo" onclick="window.open('https://www.nytimes.com/games/wordle', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="16" y="16" width="32" height="32" rx="8" fill="#81c784"/>
+                                        <text x="32" y="40" font-size="18" fill="#fff" font-family="Arial" text-anchor="middle">W</text>
+                                    </svg>
+                                    <p>Wordle</p>
+                                </div>
+                                <!-- Quordle -->
+                                <div class="logo" onclick="window.open('https://www.quordle.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="14" y="14" width="36" height="36" rx="10" fill="#fff"/>
+                                        <text x="32" y="40" font-size="18" fill="#43a047" font-family="Arial" text-anchor="middle">Q</text>
+                                    </svg>
+                                    <p>Quordle</p>
+                                </div>
+                                <!-- Squaredle -->
+                                <div class="logo" onclick="window.open('https://squaredle.app', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="18" y="18" width="28" height="28" fill="#1976d2"/>
+                                        <rect x="24" y="24" width="16" height="16" fill="#fff"/>
+                                    </svg>
+                                    <p>Squaredle</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Social Container -->
+                    <div class="social-container" id="ipad-social-container">
+                        <div class="social-header">
+                            <i class="fas fa-users text-orange-600 text-2xl"></i>
+                            <div class="social-search">
+                                <input id="ipad-social-search-input" placeholder="Search Social" type="text"/>
+                            </div>
+                            <button id="ipad-social-search-button" class="text-white"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="social-content">
+                            <div id="ipad-social-list" class="grid grid-cols-2 gap-4"></div>
+                        </div>
+                    </div>
+                    <!-- Watch Party Container -->
+                    <div class="watchparty-container" id="ipad-watchparty-container">
+                        <div class="watchparty-header">
+                            <i class="fas fa-video text-blue-600 text-2xl"></i>
+                            <div class="watchparty-search">
+                                <input id="ipad-watchparty-search-input" placeholder="Search Watch Party" type="text"/>
+                            </div>
+                            <button id="ipad-watchparty-search-button" class="text-white"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="watchparty-content">
+                            <div id="ipad-watchparty-list" class="sub-grid">
+                                <!-- TED -->
+                                <div class="logo" onclick="window.open('https://ted.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="12" y="24" width="40" height="16" rx="8" fill="#e62b1e"/>
+                                        <text x="32" y="36" font-size="16" fill="#fff" font-family="Arial" text-anchor="middle">TED</text>
+                                    </svg>
+                                    <p>TED</p>
+                                </div>
+                                <!-- Amazon Prime Video -->
+                                <div class="logo" onclick="window.open('https://primevideo.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="32" rx="24" ry="16" fill="#00a8e1"/>
+                                        <polygon points="32,24 44,32 32,40" fill="#fff"/>
+                                    </svg>
+                                    <p>Amazon Prime Video</p>
+                                </div>
+                                <!-- Disney+ -->
+                                <div class="logo" onclick="window.open('https://disneyplus.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="32" rx="24" ry="16" fill="#113ccf"/>
+                                        <rect x="24" y="28" width="16" height="8" rx="4" fill="#fff"/>
+                                    </svg>
+                                    <p>Disney+</p>
+                                </div>
+                                <!-- Hulu -->
+                                <div class="logo" onclick="window.open('https://hulu.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="16" y="16" width="32" height="32" rx="8" fill="#1ce783"/>
+                                        <rect x="24" y="28" width="16" height="8" rx="4" fill="#fff"/>
+                                    </svg>
+                                    <p>Hulu</p>
+                                </div>
+                                <!-- Apple TV+ -->
+                                <div class="logo" onclick="window.open('https://tv.apple.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="32" rx="24" ry="16" fill="#000"/>
+                                        <rect x="28" y="28" width="8" height="8" fill="#fff"/>
+                                    </svg>
+                                    <p>Apple TV+</p>
+                                </div>
+                                <!-- HBO Max -->
+                                <div class="logo" onclick="window.open('https://max.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="16" y="16" width="32" height="32" rx="8" fill="#a259e6"/>
+                                        <rect x="24" y="28" width="16" height="8" rx="4" fill="#fff"/>
+                                    </svg>
+                                    <p>HBO Max</p>
+                                </div>
+                                <!-- Peacock TV -->
+                                <div class="logo" onclick="window.open('https://peacocktv.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="32" rx="24" ry="16" fill="#fff"/>
+                                        <circle cx="32" cy="32" r="8" fill="#fbc02d"/>
+                                        <circle cx="40" cy="28" r="3" fill="#43a047"/>
+                                        <circle cx="24" cy="36" r="2" fill="#1976d2"/>
+                                    </svg>
+                                    <p>Peacock TV</p>
+                                </div>
+                                <!-- Paramount+ -->
+                                <div class="logo" onclick="window.open('https://paramountplus.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <polygon points="32,16 52,48 12,48" fill="#0057b8"/>
+                                        <circle cx="32" cy="36" r="8" fill="#fff"/>
+                                    </svg>
+                                    <p>Paramount+</p>
+                                </div>
+                                <!-- ZEE5 -->
+                                <div class="logo" onclick="window.open('https://zee5.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <circle cx="32" cy="32" r="28" fill="#fff"/>
+                                        <circle cx="32" cy="32" r="14" fill="#000"/>
+                                        <rect x="32" y="18" width="8" height="28" rx="4" fill="#ffeb3b"/>
+                                    </svg>
+                                    <p>ZEE5</p>
+                                </div>
+                                <!-- Voot -->
+                                <div class="logo" onclick="window.open('https://voot.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="32" rx="24" ry="16" fill="#7c4dff"/>
+                                        <rect x="28" y="28" width="8" height="8" fill="#fff"/>
+                                    </svg>
+                                    <p>Voot</p>
+                                </div>
+                                <!-- SonyLIV -->
+                                <div class="logo" onclick="window.open('https://sonyliv.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <rect x="16" y="16" width="32" height="32" rx="8" fill="#212121"/>
+                                        <rect x="24" y="28" width="16" height="8" rx="4" fill="#fff"/>
+                                    </svg>
+                                    <p>SonyLIV</p>
+                                </div>
+                                <!-- JioCinema -->
+                                <div class="logo" onclick="window.open('https://jiocinema.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="32" rx="24" ry="16" fill="#f50057"/>
+                                        <polygon points="32,24 44,32 32,40" fill="#fff"/>
+                                    </svg>
+                                    <p>JioCinema</p>
+                                </div>
+                                <!-- Hotstar -->
+                                <div class="logo" onclick="window.open('https://hotstar.com', '_blank')">
+                                    <svg viewBox="0 0 64 64">
+                                        <ellipse cx="32" cy="32" rx="24" ry="16" fill="#0c2233"/>
+                                        <rect x="28" y="28" width="8" height="8" fill="#fff"/>
+                                    </svg>
+                                    <p>Hotstar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Device Switcher Container -->
+                    <div class="device-switcher-container" id="ipad-device-switcher-container">
+                        <div class="device-switcher-header">
+                            <i class="fas fa-desktop text-purple-600 text-2xl"></i>
+                            <div class="device-switcher-search">
+                                <input id="ipad-device-switcher-search-input" placeholder="Search Devices" type="text" disabled/>
+                            </div>
+                            <button id="ipad-device-switcher-search-button" class="text-white" disabled><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="device-switcher-content">
+                            <button class="device-button active" onclick="switchDevice('tablet')">Tablet</button>
+                            <button class="device-button" onclick="switchDevice('pc')">PC</button>
+                            <button class="device-button" onclick="switchDevice('phone')">Phone</button>
+                        </div>
+                    </div>
+                    <!-- Bottom Bar -->
+                    <div class="bottom-bar" id="bottom-bar">
+                        <button onclick="goHome()"><i class="fas fa-home"></i></button>
+                        <button onclick="toggleSearch()"><i class="fas fa-search"></i></button>
+                        <button onclick="switchDevice('phone')"><i class="fas fa-mobile-alt"></i></button>
+                        <button onclick="switchDevice('tablet')"><i class="fas fa-tablet-alt"></i></button>
+                        <button onclick="switchDevice('pc')"><i class="fas fa-desktop"></i></button>
+                        <button onclick="goHome()"><i class="fas fa-arrow-left"></i></button>
+                    </div>
+                </div>
+                <div class="lockScreen" onclick="lockClick();">
+                    <div class="lockContent">
+                        <div class="statusBar"></div>
+                        <div class="lockIcon"></div>
+                        <div class="lockTime" id="ipad-lock-time">9:41<br />Saturday, August 17</div>
+                    </div>
+                    <div class="interactionBar"></div>
+                </div>
+                <div class="interactionBar" id="inAppBar" onclick="goHome();"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
