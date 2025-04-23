@@ -1,0 +1,391 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    transition: background 0.3s ease;
+    background: linear-gradient(to right, #004d4d, #004d4d);
+}
+.ipad-wrap {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1003;
+    justify-content: center;
+    align-items: center;
+}
+:root {
+    --sizeVar: 95vmin;
+}
+.ipadBox {
+    position: relative;
+    width: var(--sizeVar);
+    height: calc(var(--sizeVar) * 0.77);
+    background-color: #121212;
+    border-radius: calc(var(--sizeVar) / 24);
+    box-shadow: 0 0 0 calc(var(--sizeVar) / 200) #9d9ea0;
+}
+.ipadBox::before,
+.ipadBox::after {
+    content: "";
+    position: absolute;
+    width: 4%;
+    height: 1%;
+    left: 6%;
+    top: -1.2%;
+    border-radius: calc(var(--sizeVar) / 24) calc(var(--sizeVar) / 24) 0 0;
+    background-color: #8a8a8a;
+    z-index: -1;
+}
+.ipadBox::after {
+    left: 11%;
+}
+.powerButton {
+    position: absolute;
+    width: fit-content;
+    height: 7%;
+    left: -1.5vmin;
+    top: 5%;
+    padding: 0;
+    padding-right: 0.5vmin;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: transparent;
+    border-radius: calc(var(--sizeVar) / 24) 0 0 calc(var(--sizeVar) / 24);
+    background-color: #8a8a8a;
+    z-index: -1;
+}
+.powerButton::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 150%;
+    top: -25%;
+    left: -100%;
+}
+.ipadScreen {
+    position: absolute;
+    width: 95%;
+    height: 93.6%;
+    top: 3.2%;
+    left: 2.5%;
+    border-radius: calc(var(--sizeVar) / 40);
+    background-color: #aaaaaa;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 300ms linear;
+}
+.wallpaper,
+.lockContent {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-image: url("https://assets.codepen.io/2722301/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-color: black;
+}
+.lockScreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    cursor: pointer;
+    overflow: hidden;
+    backdrop-filter: blur(0);
+    transition: top 800ms ease-in 0s, backdrop-filter 200ms ease-in 0s;
+}
+.lockContent {
+    background: none;
+}
+.statusBar {
+    width: 100%;
+    height: 3%;
+    background-image: url("https://assets.codepen.io/2722301/status.png");
+    background-position: right;
+    background-size: 11.6%;
+    background-repeat: no-repeat;
+}
+.lockIcon {
+    width: 100%;
+    height: 5%;
+    background-image: url("https://assets.codepen.io/2722301/lock.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.lockTime {
+    width: 100%;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 200;
+    font-size: calc(var(--sizeVar) / 46);
+    color: white;
+    text-align: center;
+    line-height: 250%;
+    margin-top: 3%;
+}
+.lockTime::first-line {
+    font-size: calc(var(--sizeVar) / 10.5);
+}
+.interactionBar {
+    --colorMe: white;
+    position: absolute;
+    bottom: -8%;
+    height: 3%;
+    width: 100%;
+    transition: bottom 800ms ease-in 0s;
+}
+.lockScreen .interactionBar {
+    bottom: 0;
+}
+#inAppBar {
+    cursor: pointer;
+}
+.interactionBar::after {
+    content: "";
+    position: absolute;
+    width: 28%;
+    height: 30%;
+    top: 0;
+    margin-left: 36%;
+    border-radius: 100px;
+    background-color: var(--colorMe);
+}
+.lockScreen .interactionBar::after {
+    animation: interactionAnim 8000ms ease-in infinite;
+}
+.lockScreen .interactionBar::before {
+    position: absolute;
+    width: 100%;
+    top: -140%;
+    text-align: center;
+    color: white;
+    content: "swipe up to open";
+    font-size: calc(var(--sizeVar) / 46);
+    font-family: "Work Sans", sans-serif;
+    font-weight: 200;
+    animation: interTextAnim 8000ms ease-in infinite;
+}
+.appGrid {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: calc(var(--sizeVar) / 30);
+    opacity: 0;
+    transition: opacity 400ms ease-in-out;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+.appGrid.show {
+    opacity: 1;
+}
+.logo {
+    text-align: center;
+    width: calc(var(--sizeVar) / 10);
+    cursor: pointer;
+}
+.logo img,
+.logo svg {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--sizeVar) / 80);
+    transition: transform 0.2s;
+}
+.logo img:hover,
+.logo svg:hover {
+    transform: scale(1.1);
+}
+.logo p {
+    margin: 5px 0 0;
+    font-family: "Work Sans", sans-serif;
+    font-size: calc(var(--sizeVar) / 60);
+    color: white;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+@keyframes interactionAnim {
+    0% { top: 0; }
+    70% { top: 0; }
+    80% { top: -50%; }
+    92% { top: 0; }
+    100% { top: 0; }
+}
+@keyframes interTextAnim {
+    0% { top: -100%; opacity: 0; }
+    70% { top: -100%; opacity: 0; }
+    80% { top: -200%; opacity: 1; }
+    90% { top: -200%; opacity: 1; }
+    100% { top: -200%; opacity: 0; }
+}
+.youtube-container,
+.games-container,
+.social-container,
+.watchparty-container,
+.device-switcher-container {
+    background: #181818;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.youtube-container.active,
+.games-container.active,
+.social-container.active,
+.watchparty-container.active,
+.device-switcher-container.active {
+    display: block;
+}
+.youtube-header,
+.games-header,
+.social-header,
+.watchparty-header,
+.device-switcher-header {
+    padding: 10px;
+    background: #282828;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.youtube-search,
+.games-search,
+.social-search,
+.watchparty-search {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+.youtube-search input,
+.games-search input,
+.social-search input,
+.watchparty-search input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    background: #121212;
+    color: #fff;
+    border: none;
+}
+.youtube-content,
+.games-content,
+.social-content,
+.watchparty-content,
+.device-switcher-content {
+    padding: 10px;
+    overflow-y: auto;
+    height: calc(100% - 60px);
+}
+.video-item,
+.game-item,
+.social-item,
+.watchparty-item {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+.video-item:hover,
+.game-item:hover,
+.social-item:hover,
+.watchparty-item:hover {
+    transform: scale(1.05);
+}
+.sub-grid {
+    display: none;
+    grid-template-columns: repeat(6, 1fr);
+    gap: calc(var(--sizeVar) / 30);
+    justify-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    height: calc(100% - 60px);
+    overflow-y: auto;
+}
+.sub-grid.active {
+    display: grid;
+}
+.device-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 10px;
+}
+.device-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+.device-button.active {
+    background: rgba(255, 255, 255, 0.5);
+}
+.search-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #282828;
+    padding: 10px;
+    display: none;
+    z-index: 10;
+}
+.search-bar.active {
+    display: flex;
+    align-items: center;
+}
+.search-bar input {
+    flex-grow: 1;
+    padding: 5px;
+    border-radius: 5px;
+    background: #121212;
+    color: #fff;
+    border: none;
+    margin-right: 10px;
+}
+.search-bar button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.search-bar button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+.bottom-bar {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    gap: 10px;
+    z-index: 5;
+}
+.bottom-bar.active {
+    display: flex;
+}
+.bottom-bar button {
+    background: transparent;
+    border: none;
+    padding: 3px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: calc(var(--sizeVar) / 25);
+    transition: transform 0.2s;
+}
+.bottom-bar button:hover {
+    transform: scale(1.2);
+}
